@@ -1,3 +1,5 @@
+import { ILink } from "./links.interface";
+
 export interface UltimoStatus {
   id: number;
   uri: string;
@@ -39,4 +41,26 @@ export interface IDeputado {
   ufNascimento: string;
   municipioNascimento: string;
   escolaridade: string;
+}
+
+export interface IDeputadoRoot {
+  id: number;
+  uri: string;
+  nome: string;
+  siglaPartido: string;
+  uriPartido: string;
+  siglaUf: string;
+  idLegislatura: number;
+  urlFoto: string;
+  email: string;
+}
+
+export interface IResponseDeputados {
+  dados: IDeputado[];
+  links: ILink[];
+}
+
+export interface IResponseDeputadosRoot {
+  dados: IDeputadoRoot[];
+  links: ILink[];
 }

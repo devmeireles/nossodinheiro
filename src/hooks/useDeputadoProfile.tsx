@@ -2,7 +2,7 @@ import { IDeputado } from "@/interfaces/deputado.interface";
 import { IDespesas, IResponseDespesas } from "@/interfaces/despesas.interface";
 import { create } from "zustand";
 
-interface UserDeputadoProfileStore {
+interface UseDeputadoProfileStore {
   quantidadeDespesas: number;
   totalDespesas: number;
   despesas: IDespesas[];
@@ -13,7 +13,7 @@ interface UserDeputadoProfileStore {
   fetchPerfilDeputado: (deputadoId: number) => void;
 }
 
-const useDeputadoProfile = create<UserDeputadoProfileStore>((set) => ({
+const useDeputadoProfile = create<UseDeputadoProfileStore>((set) => ({
   quantidadeDespesas: 0,
   totalDespesas: 0,
   despesas: [],
