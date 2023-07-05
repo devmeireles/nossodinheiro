@@ -1,8 +1,8 @@
 "use client"
 
 
+import DeputadoHeader from "@/components/defaults/DeputadoHeader";
 import Loading from "@/components/defaults/Loading";
-import SectionHeader from "@/components/defaults/SectionHeader";
 import Tabs from "@/components/defaults/Tabs";
 import { ITabSelection } from "@/components/defaults/Tabs/types";
 import DespesasDeputado from "@/components/sections/DespesasDeputado";
@@ -47,11 +47,7 @@ const DeputadoPage: React.FC<DeputadoPageParams> = ({ params }) => {
       {loading && <Loading />}
       {(deputado && despesas) && (
         <>
-          <SectionHeader
-            title={deputado.ultimoStatus.nomeEleitoral}
-            image={deputado.ultimoStatus.urlFoto}
-            bio={""}
-          />
+          <DeputadoHeader deputado={deputado} />
 
           <Tabs
             openTab={openTab}
