@@ -1,15 +1,8 @@
 "use client"
 
+import { IDespesas } from "@/interfaces/despesas.interface";
 import { ITableColumns } from "@/interfaces/table-columns.interface";
 import DefaultTable from "../defaults/Table";
-
-interface IDespesas {
-  id: number;
-  year: number;
-  month: number;
-  amount: number;
-  supplier: string;
-}
 
 interface DespesasDeputadoProps {
   items: IDespesas[];

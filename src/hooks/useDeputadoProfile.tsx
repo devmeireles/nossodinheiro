@@ -1,5 +1,5 @@
 import { IDeputado } from "@/interfaces/deputado.interface";
-import { IDespesas } from "@/interfaces/despesas.interface";
+import { IDespesas, IResponseDespesas } from "@/interfaces/despesas.interface";
 import { create } from "zustand";
 
 interface UserDeputadoProfileStore {
@@ -29,7 +29,7 @@ const useDeputadoProfile = create<UserDeputadoProfileStore>((set) => ({
         }
       ).then((item) => item.json());
 
-      const { dados } = response;
+      const { dados }: IResponseDespesas = response;
 
       set((state) => {
 
