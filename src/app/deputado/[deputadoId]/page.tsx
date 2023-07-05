@@ -69,9 +69,9 @@ const DeputadoItem: React.FC<DeputadoItemParams> = ({ params }) => {
       {(deputado && despesas) && (
         <>
           <SectionHeader
-            title={deputado.name}
+            title={deputado.ultimoStatus.nomeEleitoral}
             image={deputado.ultimoStatus.urlFoto}
-            bio={deputado.ultimoStatus.urlFoto}
+            bio={""}
           />
 
           <Tabs
