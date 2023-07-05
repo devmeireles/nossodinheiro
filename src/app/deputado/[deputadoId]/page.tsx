@@ -8,11 +8,11 @@ import useDeputadoProfileStore from "@/hooks/useDeputadoProfile";
 import useSettingsForm from "@/hooks/useSettingsForm";
 import React, { useEffect, useState } from "react";
 
-interface DeputadoItemParams {
+interface DeputadoPageParams {
   params: Record<string, any>;
 }
 
-const DeputadoItem: React.FC<DeputadoItemParams> = ({ params }) => {
+const DeputadoPage: React.FC<DeputadoPageParams> = ({ params }) => {
   const [openTab, setOpenTab] = useState(1);
   const { selectedColumns, itemsPerPage } = useSettingsForm();
   const { despesas, fetchDespesasDeputado, deputado, fetchPerfilDeputado } = useDeputadoProfileStore();
@@ -24,7 +24,7 @@ const DeputadoItem: React.FC<DeputadoItemParams> = ({ params }) => {
     };
 
     fetchData()
-  }, [params, itemsPerPage]);
+  }, [params, itemsPerPage, fetchDespesasDeputado, fetchPerfilDeputado]);
 
   const tabContents = [
     {
@@ -87,4 +87,4 @@ const DeputadoItem: React.FC<DeputadoItemParams> = ({ params }) => {
 
 }
 
-export default DeputadoItem;
+export default DeputadoPage;
