@@ -37,7 +37,7 @@ const SettingsForm: React.FC<SettingsFormProps> = () => {
           </select>
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-3 gap-4">
         {columnsOptions.map((column) => (
           <div key={column.key} className="flex items-center">
             <Switch
