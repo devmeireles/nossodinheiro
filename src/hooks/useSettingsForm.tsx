@@ -46,20 +46,27 @@ const useSettingsForm = create<SettingsFormStore>((set) => ({
   ],
   toggleSwitch: (selectedColumnKey: string) => {
     set((state) => {
-      const updatedSelectedColumns: ITableColumnsSelectable[] = [];
+      const updatedSelectedColumns = [...state.selectedColumns];
+      const columnIndex = updatedSelectedColumns.findIndex(
+        (column) => column.key === selectedColumnKey
+      );
 
-      state.columnsOptions.some((item) => {
-        if (item.key === selectedColumnKey) {
-          updatedSelectedColumns.push({
-            ...item,
-            selected: true,
-          })
+      if (columnIndex === -1) {
+        const columnToAdd = state.columnsOptions.find(
+          (column) => column.key === selectedColumnKey
+        );
+
+        if (columnToAdd) {
+          updatedSelectedColumns.push({ ...columnToAdd, selected: true });
         }
-      });
+
+      } else {
+        updatedSelectedColumns.splice(columnIndex, 1);
+      }
 
       return {
-        selectedColumns: [...state.selectedColumns, ...updatedSelectedColumns]
-      }
+        selectedColumns: updatedSelectedColumns,
+      };
     });
   },
   columnsOptions: columns,
