@@ -1,11 +1,12 @@
 "use client";
 
+import Loading from "@/components/defaults/Loading";
 import DeputadosList from "@/components/list/DeputadosList";
 import useDeputados from "@/hooks/useDeputados";
 import { useEffect } from "react";
 
 const DeputadosPage = () => {
-  const { deputados, fetchDeputados } = useDeputados();
+  const { deputados, fetchDeputados, loading } = useDeputados();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,7 +18,9 @@ const DeputadosPage = () => {
 
   return (
     <div className="container mx-auto overflow-auto pt-6">
-      <DeputadosList deputados={deputados} />
+      {
+        loading ? <Loading /> : <DeputadosList deputados={deputados} />
+      }
     </div>
   )
 }
