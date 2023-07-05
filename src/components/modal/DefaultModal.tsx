@@ -74,8 +74,7 @@ const DefaultModal: React.FC<DefaultModalProps> = ({
           justify-center 
           items-center 
           flex 
-          overflow-x-hidden 
-          overflow-y-auto 
+          overflow-hidden
           fixed 
           inset-0 
           z-50 
@@ -87,9 +86,9 @@ const DefaultModal: React.FC<DefaultModalProps> = ({
         <div className="
           relative 
           w-full
-          md:w-4/6
-          lg:w-3/6
-          xl:w-2/5
+          md:w-5/6
+          lg:w-4/6
+          xl:w-3/5
           my-6
           mx-auto 
           h-full 
