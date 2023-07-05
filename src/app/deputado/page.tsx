@@ -5,7 +5,6 @@ import useDeputados from "@/hooks/useDeputados";
 import { useEffect } from "react";
 
 const DeputadosPage = () => {
-
   const { deputados, fetchDeputados } = useDeputados();
 
   useEffect(() => {
@@ -17,8 +16,7 @@ const DeputadosPage = () => {
   }, [fetchDeputados])
 
   return (
-    <div className="container mx-auto overflow-auto">
-      <h1>Deputados Page</h1>
+    <div className="container mx-auto overflow-auto pt-6">
       <DeputadosList deputados={deputados} />
     </div>
   )
