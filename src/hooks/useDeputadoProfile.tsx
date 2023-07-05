@@ -1,8 +1,8 @@
-import { IDeputado } from "@/interfaces/deputado.interface";
-import { IDespesas } from "@/interfaces/despesas.interface";
+import { IDeputado, IResponseDeputado } from "@/interfaces/deputado.interface";
+import { IDespesas, IResponseDespesas } from "@/interfaces/despesas.interface";
 import { create } from "zustand";
 
-interface UserDeputadoProfileStore {
+interface UseDeputadoProfileStore {
   quantidadeDespesas: number;
   totalDespesas: number;
   despesas: IDespesas[];
@@ -11,9 +11,10 @@ interface UserDeputadoProfileStore {
   deputado: IDeputado | null;
   fetchDespesasDeputado: (deputadoId: number, itemsPerPage: number) => void;
   fetchPerfilDeputado: (deputadoId: number) => void;
+  reset: () => void
 }
 
-const useDeputadoProfile = create<UserDeputadoProfileStore>((set) => ({
+const useDeputadoProfile = create<UseDeputadoProfileStore>((set, get) => ({
   quantidadeDespesas: 0,
   totalDespesas: 0,
   despesas: [],
@@ -23,13 +24,13 @@ const useDeputadoProfile = create<UserDeputadoProfileStore>((set) => ({
     set({ loading: true });
     try {
       const response = await fetch(
-        `/api/deputado/${deputadoId}?limit=${itemsPerPage}`,
+        `/api/deputado/despesas/${deputadoId}?limit=${itemsPerPage}`,
         {
           method: "GET",
         }
       ).then((item) => item.json());
 
-      const { dados } = response;
+      const { dados }: IResponseDespesas = response;
 
       set((state) => {
 
@@ -49,14 +50,16 @@ const useDeputadoProfile = create<UserDeputadoProfileStore>((set) => ({
   deputado: null,
   fetchPerfilDeputado: async (deputadoId: number) => {
     try {
-      const response = await fetch(
-        `/api/perfil/${deputadoId}`,
+      get().reset();
+
+      const perfil = await fetch(
+        `/api/deputado/perfil/${deputadoId}`,
         {
           method: "GET",
         }
       ).then((item) => item.json());
 
-      const { dados } = response;
+      const { dados }: IResponseDeputado = perfil;
 
       set((state) => {
         return {
@@ -67,7 +70,10 @@ const useDeputadoProfile = create<UserDeputadoProfileStore>((set) => ({
     } catch (error) {
       set({ error, loading: false });
     }
-  }
+  },
+  reset: () => {
+    set({ deputado: null });
+  },
 }));
 
 export default useDeputadoProfile;

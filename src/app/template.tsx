@@ -1,3 +1,4 @@
+import Footer from "@/components/navigation/Footer";
 import HeaderNavigation from "@/components/navigation/HeaderNavigation";
 
 interface TemplateProps {
@@ -14,6 +15,10 @@ const Template = ({ children }: TemplateProps) => {
       <main>
         {children}
       </main>
+
+      <footer>
+        <Footer />
+      </footer>
     </div>
   )
 }

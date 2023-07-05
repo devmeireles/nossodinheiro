@@ -1,6 +1,7 @@
 import useDeputadoProfileStore from "@/hooks/useDeputadoProfile";
 import useSettingsModal from "@/hooks/useSettingsModal";
 import { ITableColumns } from "@/interfaces/table-columns.interface";
+import { getAverageTicket, getFormatedCurreny } from "@/utils/formarter.utils";
 import { CiSettings } from "react-icons/ci";
 import Button from "../Button";
 import TableCell from "./TableCell";
@@ -17,8 +18,9 @@ const Body: React.FC<BodyProps> = ({ items, columns }) => {
   return (
     <div>
       <div className="bg-gray-50 text-gray-900 px-6 pt-4 pb-6 flex justify-between">
-        <div>
-          <p><strong>{quantidadeDespesas}</strong> despesas em um total de <strong>R${totalDespesas}</strong></p>
+        <div className="text-sm">
+          <p><strong>{quantidadeDespesas}</strong> despesas em um total de <strong>{getFormatedCurreny(totalDespesas)}</strong></p>
+          <p>Ticket médio de <strong>{getAverageTicket(totalDespesas, quantidadeDespesas)}</strong></p>
         </div>
 
         <div>
