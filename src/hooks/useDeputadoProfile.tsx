@@ -11,9 +11,10 @@ interface UseDeputadoProfileStore {
   deputado: IDeputado | null;
   fetchDespesasDeputado: (deputadoId: number, itemsPerPage: number) => void;
   fetchPerfilDeputado: (deputadoId: number) => void;
+  reset: () => void
 }
 
-const useDeputadoProfile = create<UseDeputadoProfileStore>((set) => ({
+const useDeputadoProfile = create<UseDeputadoProfileStore>((set, get) => ({
   quantidadeDespesas: 0,
   totalDespesas: 0,
   despesas: [],
@@ -49,6 +50,8 @@ const useDeputadoProfile = create<UseDeputadoProfileStore>((set) => ({
   deputado: null,
   fetchPerfilDeputado: async (deputadoId: number) => {
     try {
+      get().reset();
+
       const response = await fetch(
         `/api/perfil/${deputadoId}`,
         {
@@ -67,7 +70,10 @@ const useDeputadoProfile = create<UseDeputadoProfileStore>((set) => ({
     } catch (error) {
       set({ error, loading: false });
     }
-  }
+  },
+  reset: () => {
+    set({ deputado: null });
+  },
 }));
 
 export default useDeputadoProfile;
