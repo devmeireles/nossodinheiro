@@ -1,6 +1,7 @@
 "use client"
 
 
+import Loading from "@/components/defaults/Loading";
 import SectionHeader from "@/components/defaults/SectionHeader";
 import Tabs from "@/components/defaults/Tabs";
 import { ITabSelection } from "@/components/defaults/Tabs/types";
@@ -16,7 +17,7 @@ interface DeputadoPageParams {
 const DeputadoPage: React.FC<DeputadoPageParams> = ({ params }) => {
   const [openTab, setOpenTab] = useState(1);
   const { selectedColumns, itemsPerPage } = useSettingsForm();
-  const { despesas, fetchDespesasDeputado, deputado, fetchPerfilDeputado } = useDeputadoProfileStore();
+  const { despesas, fetchDespesasDeputado, deputado, fetchPerfilDeputado, loading } = useDeputadoProfileStore();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,41 +33,18 @@ const DeputadoPage: React.FC<DeputadoPageParams> = ({ params }) => {
       id: 1,
       content: <DespesasDeputado items={despesas} columns={selectedColumns} />
     },
-    {
-      id: 2,
-      content: <div>CONTENT 2</div>
-    },
-    {
-      id: 3,
-      content: <div>CONTENT 3</div>
-    },
-    {
-      id: 4,
-      content: <div>CONTENT 4</div>
-    }
   ];
 
   const tabItems: ITabSelection[] = [
     {
       id: 1,
-      text: 'Visão Geral',
-    },
-    {
-      id: 2,
       text: 'Despesas',
     },
-    {
-      id: 3,
-      text: 'Votações',
-    },
-    {
-      id: 4,
-      text: 'Noticias',
-    }
   ];
 
   return (
     <div className="deputado">
+      {loading && <Loading />}
       {(deputado && despesas) && (
         <>
           <SectionHeader
