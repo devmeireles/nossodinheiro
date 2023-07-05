@@ -1,6 +1,7 @@
 "use client";
 
 import { IDeputado } from "@/interfaces/deputado.interface";
+import { getAge, getFormatedDate } from "@/utils/formarter.utils";
 import Image from "next/image";
 import DeputadoContacts from "./DeputadoContacts";
 
@@ -21,7 +22,7 @@ const DeputadoHeader: React.FC<DeputadoHeaderProps> = ({ deputado }) => {
             <div>
               <h1 className="text-3xl font-semibold mb-2">{deputado.ultimoStatus.nomeEleitoral}</h1>
               {(deputado.ufNascimento && deputado.municipioNascimento) && <p><strong>Naturalidade: </strong>{deputado.municipioNascimento} - {deputado.ufNascimento}</p>}
-              {deputado.dataNascimento && <p><strong>Nascimento: </strong>{deputado.dataNascimento}</p>}
+              {deputado.dataNascimento && <p><strong>Nascimento: </strong>{getFormatedDate(deputado.dataNascimento)} ({getAge(deputado.dataNascimento)})</p>}
               {deputado.escolaridade && <p><strong>Escolaridade: </strong>{deputado.escolaridade}</p>}
               {deputado.ultimoStatus.siglaPartido && deputado.ultimoStatus.siglaUf && <p><strong>Partido: </strong>{deputado.ultimoStatus.siglaPartido} - {deputado.ultimoStatus.siglaUf}</p>}
             </div>
