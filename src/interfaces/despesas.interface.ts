@@ -1,3 +1,5 @@
+import { ILink } from "./links.interface";
+
 export interface IDespesas {
   ano: number;
   mes: number;
@@ -16,4 +18,9 @@ export interface IDespesas {
   numRessarcimento: number | string;
   codLote: number;
   parcela: number;
+}
+
+export interface IResponseDespesas {
+  dados: IDespesas[];
+  links: ILink[]
 }
