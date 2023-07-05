@@ -1,4 +1,4 @@
-import { IDeputado } from "@/interfaces/deputado.interface";
+import { IDeputado, IResponseDeputado } from "@/interfaces/deputado.interface";
 import { IDespesas, IResponseDespesas } from "@/interfaces/despesas.interface";
 import { create } from "zustand";
 
@@ -24,7 +24,7 @@ const useDeputadoProfile = create<UseDeputadoProfileStore>((set, get) => ({
     set({ loading: true });
     try {
       const response = await fetch(
-        `/api/deputado/${deputadoId}?limit=${itemsPerPage}`,
+        `/api/deputado/despesas/${deputadoId}?limit=${itemsPerPage}`,
         {
           method: "GET",
         }
@@ -52,14 +52,14 @@ const useDeputadoProfile = create<UseDeputadoProfileStore>((set, get) => ({
     try {
       get().reset();
 
-      const response = await fetch(
-        `/api/perfil/${deputadoId}`,
+      const perfil = await fetch(
+        `/api/deputado/perfil/${deputadoId}`,
         {
           method: "GET",
         }
       ).then((item) => item.json());
 
-      const { dados } = response;
+      const { dados }: IResponseDeputado = perfil;
 
       set((state) => {
         return {

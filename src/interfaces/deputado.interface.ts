@@ -55,6 +55,11 @@ export interface IDeputadoRoot {
   email: string;
 }
 
+export interface IResponseDeputado {
+  dados: IDeputado;
+  links: ILink[];
+}
+
 export interface IResponseDeputados {
   dados: IDeputado[];
   links: ILink[];
